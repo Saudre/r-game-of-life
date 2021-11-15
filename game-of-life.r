@@ -24,6 +24,23 @@ update_game <- function(your_matrix) {
     col_number <- ncol(your_matrix)
     new_matrix <- matrix(0, nrow = row_number, ncol = col_number)
 
+# Top-left
+
+    live_neighbors <- sum(
+        your_matrix[row_number, col_number],
+        your_matrix[row_number, 1],
+        your_matrix[row_number, 2],
+        your_matrix[1, col_number],
+        your_matrix[1, 2],
+        your_matrix[2, col_number],
+        your_matrix[2, 1],
+        your_matrix[2, 2]
+        )
+
+    new_matrix[1, 1] <- evaluate_rules(your_matrix[1, 1], live_neighbors)
+
+# Center
+
     for (i in 2:(row_number - 1)) {
         for (j in 2:(col_number - 1)) {
             live_neighbors <- sum(
