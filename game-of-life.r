@@ -19,44 +19,44 @@ evaluate_rules <- function(cell, neighbors) {
     }
 }
 
-update_game <- function(your_matrix) {
-    row_number <- nrow(your_matrix)
-    col_number <- ncol(your_matrix)
-    new_matrix <- matrix(0, nrow = row_number, ncol = col_number)
+update_game <- function(board) {
+    row_number <- nrow(board)
+    col_number <- ncol(board)
+    new_board <- matrix(0, nrow = row_number, ncol = col_number)
 
 # Top-left
 
     live_neighbors <- sum(
-        your_matrix[row_number, col_number],
-        your_matrix[row_number, 1],
-        your_matrix[row_number, 2],
-        your_matrix[1, col_number],
-        your_matrix[1, 2],
-        your_matrix[2, col_number],
-        your_matrix[2, 1],
-        your_matrix[2, 2]
+        board[row_number, col_number],
+        board[row_number, 1],
+        board[row_number, 2],
+        board[1, col_number],
+        board[1, 2],
+        board[2, col_number],
+        board[2, 1],
+        board[2, 2]
         )
 
-    new_matrix[1, 1] <- evaluate_rules(your_matrix[1, 1], live_neighbors)
+    new_board[1, 1] <- evaluate_rules(board[1, 1], live_neighbors)
 
 # Center
 
     for (i in 2:(row_number - 1)) {
         for (j in 2:(col_number - 1)) {
             live_neighbors <- sum(
-                your_matrix[i - 1, j - 1],
-                your_matrix[i - 1, j],
-                your_matrix[i - 1, j + 1],
-                your_matrix[i, j - 1],
-                your_matrix[i, j + 1],
-                your_matrix[i + 1, j - 1],
-                your_matrix[i + 1, j],
-                your_matrix[i + 1, j + 1]
+                board[i - 1, j - 1],
+                board[i - 1, j],
+                board[i - 1, j + 1],
+                board[i, j - 1],
+                board[i, j + 1],
+                board[i + 1, j - 1],
+                board[i + 1, j],
+                board[i + 1, j + 1]
             )
-            new_matrix[i, j] <- evaluate_rules(your_matrix[i, j], live_neighbors)
+            new_board[i, j] <- evaluate_rules(board[i, j], live_neighbors)
         }
     }
-    return(new_matrix)
+    return(new_board)
 }
 
 simulation <- function() {
