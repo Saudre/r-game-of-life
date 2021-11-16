@@ -24,7 +24,7 @@ update_game <- function(board) {
     col_number <- ncol(board)
     new_board <- matrix(0, nrow = row_number, ncol = col_number)
 
-# Top-left
+    # Top-left-corner
 
     live_neighbors <- sum(
         board[row_number, col_number],
@@ -39,7 +39,23 @@ update_game <- function(board) {
 
     new_board[1, 1] <- evaluate_rules(board[1, 1], live_neighbors)
 
-# Center
+    # Top
+
+    for (j in 2:(col_number-1)) {
+        live_neighbors <- sum(
+            board[row_number, j - 1],
+            board[row_number, j],
+            board[row_number, j + 1],
+            board[1, j - 1],
+            board[1, j + 1],
+            board[2, j - 1],
+            board[2, j],
+            board[2, j + 1]
+        )
+        new_board[1, j] <- evaluate_rules(board[1, j], live_neighbors)
+    }
+
+    # Center
 
     for (i in 2:(row_number - 1)) {
         for (j in 2:(col_number - 1)) {
