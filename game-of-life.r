@@ -41,7 +41,7 @@ update_game <- function(board) {
 
     # Top
 
-    for (j in 2:(col_number-1)) {
+    for (j in 2:(col_number - 1)) {
         live_neighbors <- sum(
             board[row_number, j - 1],
             board[row_number, j],
@@ -69,6 +69,22 @@ update_game <- function(board) {
     )
 
     new_board[1, col_number] <- evaluate_rules(board[1, col_number], live_neighbors)
+
+    # left
+
+    for (i in 2:(row_number - 1)) {
+        live_neighbors <- sum(
+            board[i - 1, col_number],
+            board[i - 1, 1],
+            board[i - 1, 2],
+            board[i, col_number],
+            board[i, 2],
+            board[i + 1, col_number],
+            board[i + 1, 1],
+            board[i + 1, 2]
+        )
+        new_board[i, 1] <- evaluate_rules(board[i, 1], live_neighbors)
+    }
 
     # Center
 
