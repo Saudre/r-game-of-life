@@ -10,7 +10,7 @@ get_game <- function() {
 }
 
 evaluate_rules <- function(cell, neighbors) {
-    if (cell == 1 & (neighbors == 2 | neighbors == 3)) {
+    if (cell == 1 & (neighbors %in% c(2, 3))) {
         return(1)
     } else if (cell == 0 & neighbors == 3) {
        return(1)
