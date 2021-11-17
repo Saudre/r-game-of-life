@@ -150,6 +150,20 @@ update_game <- function(board) {
     )
     new_board[row_number, 1] <- evaluate_rules(board[row_number, 1], live_neighbors)
 
+    # right-bottom-corner
+
+    live_neighbors <- sum(
+        board[(row_number - 1), (col_number - 1)],
+        board[(row_number - 1), col_number],
+        board[(row_number - 1), 1],
+        board[row_number, (col_number - 1)],
+        board[row_number, 1],
+        board[1, (col_number - 1)],
+        board[1, col_number],
+        board[1, 1]
+    )
+    new_board[row_number, col_number] <- evaluate_rules(board[row_number, col_number], live_neighbors)
+
     return(new_board)
 }
 
