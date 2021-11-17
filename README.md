@@ -7,7 +7,7 @@ The main goal of this project is to simulate the famous *Game of Life*, a cellul
 - [Technologies](#Technologies)
 - [Status](#Technologies)
 - [Launch](#Launch)
-- [How to Use](#Howtouse)
+- [How to Use](#How)
 
 ## Technologies 
 - R 3.6.3
@@ -24,6 +24,10 @@ If you are using a macOS system, within the function `simulation`, a function ca
 ## How to use
 
 You can control the number of cells by changing the values of `board_row` and `board_col`
+
+Initially, The game has been set up with a square board with 10 thousand cells.
+
+You can also easily control the cells' color. The const `my_color` within `simulation` function is a vector with two values `c(1, 5)` — the first value controls the color for the dead cells and the second one for the live cells. 
 
 
 ## Status
