@@ -1,6 +1,3 @@
-board_row <- 100
-board_col <- 100
-
 # Initial Game
 
 get_game <- function() {
@@ -182,5 +179,10 @@ simulation <- function() {
         grid(nx = board_row, ny = board_col, col = grey(0.3), lty = 1)
     }
 }
+
+# Board dimensions
+
+board_row <- 100
+board_col <- 100
 
 simulation()
